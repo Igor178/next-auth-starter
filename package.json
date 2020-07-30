@@ -8,8 +8,25 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.4.4",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "5.0.0-alpha1",
+    "cookie": "^0.4.1",
+    "formik": "^2.1.5",
+    "image-trace-loader": "^1.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.25",
+    "next": "^9.5.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-connect": "^0.8.1",
+    "next-optimized-images": "^2.6.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "swr": "^0.2.3",
+    "validatorjs": "^3.18.1",
+    "webp-loader": "^0.6.0"
   }
 }
