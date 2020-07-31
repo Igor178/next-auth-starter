@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { post } from 'axios'
+import { Formik, Form, Field } from 'formik'
+import Link from 'next/link'
 import Layout from '../src/components/layout/index'
 import WithoutAuth from '../src/components/hoc/withoutAuth'
 import ShowPassword from '../src/components/showPassword/index'
 import ShowErrors from '../src/components/showErrors/index'
 import { useAuth } from '../src/context/auth/AuthContext'
-import { post } from 'axios'
-import { Formik, Form, Field } from 'formik'
 
 const Register = () => {
   const { setAuthenticated } = useAuth()
@@ -16,7 +17,10 @@ const Register = () => {
       <div className='container p-3'>
         <h1>Register Page</h1>
         <p className='lead'>
-          Please register below to get access to the dashboard.
+          Please register below to get access to the dashboard or{' '}
+          <Link href='/login'>
+            <a className='text-decoration-none'>Login here.</a>
+          </Link>
         </p>
         <Formik
           initialValues={{
@@ -127,7 +131,12 @@ const Register = () => {
                     name='terms'
                   />
                   <label className='form-check-label' htmlFor='terms'>
-                    Agree to Terms of Service 📜
+                    Agree to our{' '}
+                    <Link href='/terms'>
+                      <a className='text-decoration-none'>
+                        Terms of Service 📜
+                      </a>
+                    </Link>
                   </label>
                 </div>
                 <button

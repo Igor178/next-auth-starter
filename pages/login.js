@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import Link from 'next/link'
+import { post } from 'axios'
+import { Formik, Form, Field } from 'formik'
 import Layout from '../src/components/layout/index'
 import ShowPassword from '../src/components/showPassword/index'
 import ShowErrors from '../src/components/showErrors/index'
 import WithoutAuth from '../src/components/hoc/withoutAuth'
-import { Formik, Form, Field } from 'formik'
-import { post } from 'axios'
 import { useAuth } from '../src/context/auth/AuthContext'
 
 const Login = () => {
@@ -15,7 +16,13 @@ const Login = () => {
     <Layout title='Login'>
       <div className='container p-3'>
         <h1>Login Page</h1>
-        <p className='lead'>Please log in to continue.</p>
+        <p className='lead'>
+          Please log in to continue or{' '}
+          <Link href='/register'>
+            <a className='text-decoration-none'>Register here</a>
+          </Link>
+          .
+        </p>
         <Formik
           initialValues={{
             email: '',
@@ -54,8 +61,14 @@ const Login = () => {
                   className={`form-control ${errors?.msg && 'border-danger'}`}
                 />
               </div>
-              <label htmlFor='password' className='form-label'>
+              <label
+                htmlFor='password'
+                className='form-label d-flex justify-content-between'
+              >
                 Password
+                <Link href='/password-reset'>
+                  <a className='text-decoration-none'>Forgot password?</a>
+                </Link>
               </label>
               <div className='mb-3 input-group'>
                 <Field
