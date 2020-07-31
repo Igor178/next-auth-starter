@@ -44,6 +44,11 @@ const Navigation = () => {
           id='navbarNavAltMarkup'
         >
           <div className='navbar-nav'>
+            <Link href='/terms'>
+              <a className={`nav-link ${route === '/terms' && 'active'}`}>
+                Terms
+              </a>
+            </Link>
             {!isAuthenticated && (
               <Link href='/login'>
                 <a className={`nav-link ${route === '/login' && 'active'}`}>
@@ -60,7 +65,7 @@ const Navigation = () => {
             )}
             {isAuthenticated && (
               <button
-                className='btn btn-danger '
+                className='btn btn-danger ml-2'
                 role='button'
                 onClick={logout}
               >
