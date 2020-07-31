@@ -17,7 +17,7 @@ const Home = () => {
           <li>Optimized Images 📷</li>
           <li>Passport.js 🕵️‍♂️</li>
           <li>Mongoose 🏦</li>
-          <li>SWR 🎣</li>
+          <li>SWR / Axios 🎣</li>
           <li>Next Connect 🤙</li>
           <li>Moment.js 🕰</li>
           <li>Validator.js ✅</li>
