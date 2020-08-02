@@ -66,7 +66,7 @@ const Login = () => {
                 className='form-label d-flex justify-content-between'
               >
                 Password
-                <Link href='/password-reset'>
+                <Link href='/reset-password'>
                   <a className='text-decoration-none'>Forgot password?</a>
                 </Link>
               </label>

@@ -120,6 +120,9 @@ const Register = () => {
                       errors?.password && 'border-danger'
                     }`}
                   />
+                  <div id='passwordConfirmHelp' className='form-text mb-3'>
+                    Both passwords must match.
+                  </div>
                 </div>
                 <div className='mb-3 form-check'>
                   <Field

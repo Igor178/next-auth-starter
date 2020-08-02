@@ -22,6 +22,7 @@ const Home = () => {
           <li>Moment.js 🕰</li>
           <li>Validator.js ✅</li>
           <li>Formik 📝</li>
+          <li>SendGrid For Forgot Password✉️</li>
         </ul>
       </div>
     </Layout>

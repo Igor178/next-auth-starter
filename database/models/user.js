@@ -21,12 +21,19 @@ const UserSchema = new Schema(
       maxlength: 20,
       trim: true,
     },
+    resetPasswordToken: {
+      type: String,
+    },
+    resetPasswordExpires: {
+      type: Date,
+    },
   },
   { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 )
 
 UserSchema.pre('save', async function (next) {
   let user = this
+
   if (user.isModified('password')) {
     user.password = await hash(user.password, 8)
   }
