@@ -21,10 +21,10 @@ const UserSchema = new Schema(
       maxlength: 20,
       trim: true,
     },
-    resetPasswordToken: {
+    reset_password_token: {
       type: String,
     },
-    resetPasswordExpires: {
+    reset_password_expires: {
       type: Date,
     },
   },
