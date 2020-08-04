@@ -20,12 +20,12 @@ export default nc({
 
     const user = await User.findOneAndUpdate(
       {
-        resetPasswordToken: token,
-        resetPasswordExpires: { $gt: Date.now() },
+        reset_password_token: token,
+        reset_password_expires: { $gt: Date.now() },
       },
       {
         password: await hash(password, 8),
-        $unset: { resetPasswordExpires: undefined, resetPasswordToken: '' },
+        $unset: { reset_password_expires: undefined, reset_password_token: '' },
       },
       { new: true }
     )

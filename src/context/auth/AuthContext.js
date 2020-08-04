@@ -10,7 +10,9 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await get('/api/profile', { withCredentials: true })
+        const response = await get('/api/profile', {
+          withCredentials: true,
+        })
 
         setAuthenticated(true)
         setLoading(false)

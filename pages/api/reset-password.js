@@ -21,8 +21,8 @@ export default nc({
       { email },
       {
         $set: {
-          resetPasswordToken: resetPasswordToken,
-          resetPasswordExpires: Date.now() + 3600000,
+          reset_password_token: resetPasswordToken,
+          reset_password_expires: Date.now() + 3600000,
         },
       }
     )

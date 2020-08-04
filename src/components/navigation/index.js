@@ -44,11 +44,13 @@ const Navigation = () => {
           id='navbarNavAltMarkup'
         >
           <div className='navbar-nav'>
-            <Link href='/terms'>
-              <a className={`nav-link ${route === '/terms' && 'active'}`}>
-                Terms
-              </a>
-            </Link>
+            {isAuthenticated && (
+              <Link href='/profile'>
+                <a className={`nav-link ${route === '/profile' && 'active'}`}>
+                  Profile
+                </a>
+              </Link>
+            )}
             {!isAuthenticated && (
               <Link href='/login'>
                 <a className={`nav-link ${route === '/login' && 'active'}`}>
