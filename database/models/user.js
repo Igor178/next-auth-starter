@@ -14,6 +14,42 @@ const UserSchema = new Schema(
       trim: true,
       unique: true,
     },
+    gender: {
+      type: String,
+      lowercase: true,
+      enum: ['male', 'female', 'other'],
+    },
+    bio: {
+      type: String,
+      maxlength: 250,
+      trim: true,
+    },
+    hobbies: {
+      type: [String],
+      validate: (value) => {
+        return value.length <= 5 // Limit array to 5
+      },
+    },
+    socials: {
+      youtube: {
+        type: String,
+      },
+      instagram: {
+        type: String,
+      },
+      facebook: {
+        type: String,
+      },
+      twitter: {
+        type: String,
+      },
+      website: {
+        type: String,
+      },
+    },
+    location: {
+      type: String, // => Medelin, Colombia
+    },
     password: {
       type: String,
       required: true,
