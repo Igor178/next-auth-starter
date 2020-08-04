@@ -45,9 +45,16 @@ const Navigation = () => {
         >
           <div className='navbar-nav'>
             {isAuthenticated && (
+              <Link href='/dashboard'>
+                <a className={`nav-link ${route === '/dashboard' && 'active'}`}>
+                  Dashboard
+                </a>
+              </Link>
+            )}
+            {isAuthenticated && (
               <Link href='/profile'>
                 <a className={`nav-link ${route === '/profile' && 'active'}`}>
-                  Profile
+                  Settings
                 </a>
               </Link>
             )}
