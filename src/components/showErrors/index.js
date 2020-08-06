@@ -1,5 +1,25 @@
 const ShowErrors = ({ errors }) => {
-  const { name, email, password, terms, msg } = errors
+  const {
+    name,
+    email,
+    password,
+    terms,
+    msg,
+    bio,
+    ['socials.instagram']: instagram,
+    ['socials.facebook']: facebook,
+    ['socials.twitter']: twitter,
+    ['socials.youtube']: youtube,
+    ['socials.website']: website,
+  } = errors
+
+  const socials = [
+    { social: instagram, name: ' Instagram field.' },
+    { social: facebook, name: ' Facebook field.' },
+    { social: twitter, name: ' Twitter field.' },
+    { social: youtube, name: ' YouTube field.' },
+    { social: website, name: ' Website field.' },
+  ]
 
   const Error = ({ error }) => {
     return (
@@ -17,6 +37,12 @@ const ShowErrors = ({ errors }) => {
             {name?.map((err) => (
               <Error error={err} key={err} />
             ))}
+            {bio?.map((err) => (
+              <Error error={err} key={err} />
+            ))}
+            {socials.map(({ social, name }) => {
+              return social && <Error error={social[0] + name} key={name} />
+            })}
             {email?.map((err) => (
               <Error error={err} key={err} />
             ))}

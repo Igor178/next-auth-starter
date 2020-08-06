@@ -4,16 +4,7 @@ import database from '../../middleware/database'
 import User from '../../database/models/user'
 import { sendAccountDeletedEmail } from '../../lib/sgMail'
 import { destroyCookie } from '../../lib/cookies'
-
-// Should be able to edit:
-// Name
-// Gender => Predefined options
-// Bio => Textarea
-// Hobbies  => Array
-// Socials => Idk
-// Date of birth => Date format
-// Location => Adding valid location format
-// Profile Picture => File upload
+import { updateProfile } from '../../middleware/validation'
 
 export default nc({
   onNoMatch: (req, res) => {
@@ -42,4 +33,10 @@ export default nc({
 
     res.setHeader('Set-Cookie', destroyCookie())
     res.status(200).json({ msg: 'Your account has been deleted.' })
+  })
+  .use(updateProfile)
+  .post(async (req, res) => {
+    await User.updateOne({ _id: req.user.id }, req.body)
+
+    res.status(200).json({ msg: 'Your profile has been updated!' })
   })

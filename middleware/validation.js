@@ -37,6 +37,16 @@ Validator.registerAsync('exists', async (value, attributes, req, passes) => {
   }
 })
 
+Validator.register(
+  'hobbiesLength',
+  (value) => {
+    if (value.length > 5) {
+      return false
+    }
+  },
+  'You can only add 5 hobbies.'
+)
+
 export const register = (req, res, next) => {
   const validatonRule = {
     name: 'required|string',
@@ -131,4 +141,38 @@ export const changePassword = (req, res, next) => {
       next()
     }
   })
+}
+
+export const updateProfile = (req, res, next) => {
+  const validationRule = {
+    name: 'string|required',
+    gender: 'string',
+    bio: 'string|between:0,250',
+    location: 'string',
+    socials: {
+      instagram: 'url',
+      facebook: 'url',
+      youtube: 'url',
+      twitter: 'url',
+      website: 'url',
+    },
+    hobbies: 'array|hobbiesLength',
+  }
+
+  validator(
+    req.body,
+    validationRule,
+    { url: 'Please provide valid link format for' },
+    (err, status) => {
+      if (!status) {
+        res.status(400).send({
+          success: false,
+          message: 'Validation Failed',
+          data: err,
+        })
+      } else {
+        next()
+      }
+    }
+  )
 }

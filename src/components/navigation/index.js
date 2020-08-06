@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth } from '../../context/auth/AuthContext'
 import { get } from 'axios'
+import { mutate } from 'swr'
+import { useAuth } from '../../context/auth/AuthContext'
 
 const Navigation = () => {
   const { route } = useRouter()
@@ -12,7 +13,7 @@ const Navigation = () => {
   const logout = async () => {
     try {
       const response = await get('/api/logout')
-
+      mutate('/api/profile', true) // Revalidate data when logging out
       setAuthenticated(false)
     } catch (err) {
       console.log(err, 'Logout error')
