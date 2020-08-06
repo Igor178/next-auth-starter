@@ -5,7 +5,7 @@ import ProfileNavigation from '../../src/components/profileNavigation/index'
 
 const Billing = () => {
   return (
-    <Layout title='Profile - Billing'>
+    <Layout title='Billing'>
       <div className='container p-3'>
         <div className='mb-3'>
           <div className='d-flex align-items-center justify-content-between'>

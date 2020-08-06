@@ -27,6 +27,16 @@ Validator.registerAsync('duplicate', async (value, attributes, req, passes) => {
   }
 })
 
+Validator.registerAsync('exists', async (value, attributes, req, passes) => {
+  const user = await User.findOne({ email: value })
+
+  if (user) {
+    passes()
+  } else {
+    passes(false, "We couldn't find a user with this email.")
+  }
+})
+
 export const register = (req, res, next) => {
   const validatonRule = {
     name: 'required|string',
@@ -67,16 +77,6 @@ export const login = (req, res, next) => {
   })
 }
 
-Validator.registerAsync('exists', async (value, attributes, req, passes) => {
-  const user = await User.findOne({ email: value })
-
-  if (user) {
-    passes()
-  } else {
-    passes(false, "We couldn't find a user with this email.")
-  }
-})
-
 export const resetPassword = (req, res, next) => {
   const validatonRule = {
     email: 'required|email|exists',
@@ -97,6 +97,7 @@ export const resetPassword = (req, res, next) => {
 
 export const resetPasswordRecover = (req, res, next) => {
   const validatonRule = {
+    current_password: 'required|string',
     password: 'required|string|min:8|max:20|confirmed|strict',
   }
 
@@ -105,6 +106,25 @@ export const resetPasswordRecover = (req, res, next) => {
       res.status(400).send({
         success: false,
         message: 'Validation failed',
+        data: err,
+      })
+    } else {
+      next()
+    }
+  })
+}
+
+export const changePassword = (req, res, next) => {
+  const validationRule = {
+    current_password: 'required|string',
+    password: 'required|string|min:8|max:20|confirmed|strict',
+  }
+
+  validator(req.body, validationRule, {}, (err, status) => {
+    if (!status) {
+      res.status(400).send({
+        success: false,
+        message: 'Validation Failed',
         data: err,
       })
     } else {
