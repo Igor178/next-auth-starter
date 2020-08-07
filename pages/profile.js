@@ -1,4 +1,4 @@
-import { Formik, Field, Form } from 'formik'
+import { Formik, Field, Form, FieldArray } from 'formik'
 import { post } from 'axios'
 import useSWR, { mutate } from 'swr'
 import { JSONfetcher } from '../lib/fetcher'
@@ -26,6 +26,7 @@ const Profile = () => {
         {data?.data ? (
           <Formik
             initialValues={{
+              hobbie: '',
               name: data.data.name,
               gender: data.data.gender,
               bio: data.data.bio,
@@ -67,12 +68,11 @@ const Profile = () => {
               }
             }}
           >
-            {({ values, errors, status }) => {
+            {({ values, errors, status, setFieldValue }) => {
               return (
                 <Form>
                   <ShowSuccess status={status} />
                   <ShowErrors errors={errors} />
-                  <pre>{JSON.stringify(values.hobbies, 2, null)}</pre>
                   <div className='row mb-3'>
                     <label htmlFor='name' className='col-sm-2 col-form-label'>
                       Name <span className='text-danger'>*</span>
@@ -145,15 +145,81 @@ const Profile = () => {
                       Your Hobbies
                     </label>
                     <div className='col-sm-10'>
-                      <Field
-                        type='text'
-                        id='hobbies'
-                        name='hobbies'
-                        placeholder='Add some of your hobbies'
-                        className={`form-control ${
-                          errors?.hobbies && 'border-danger'
-                        }`}
-                      />
+                      <FieldArray name='hobbies'>
+                        {({ remove, push }) => (
+                          <div>
+                            {values.hobbies.length > 0 ? (
+                              <div className='d-flex align-items-center flex-wrap'>
+                                {values.hobbies.map((hobbie) => {
+                                  return (
+                                    <div key={hobbie} className='mb-3'>
+                                      <div
+                                        className='btn-group mr-2'
+                                        role='group'
+                                        aria-label='hobbie'
+                                      >
+                                        <span
+                                          className='rounded-left text-dark bg-light border border-warning'
+                                          style={{ padding: '6px 12px' }}
+                                        >
+                                          {hobbie}
+                                        </span>
+                                        <button
+                                          type='button'
+                                          className='btn btn-warning font-weight-bold'
+                                          onClick={() => remove(hobbie)}
+                                        >
+                                          X
+                                        </button>
+                                      </div>
+                                    </div>
+                                  )
+                                })}
+                              </div>
+                            ) : (
+                              <div
+                                className='mb-3 text-muted'
+                                style={{ padding: '6px 0' }}
+                              >
+                                <span>You have no hobbies yet...</span>
+                              </div>
+                            )}
+                            <div className='input-group'>
+                              <Field
+                                placeholder='Add your hobby'
+                                type='text'
+                                className={`form-control ${
+                                  errors?.hobbies && 'border-danger'
+                                }`}
+                                name='hobbie'
+                              />
+                              <button
+                                className='btn btn-primary'
+                                type='button'
+                                disabled={!values.hobbie}
+                                onClick={() => {
+                                  if (!values.hobbies.includes(values.hobbie)) {
+                                    push(values.hobbie)
+                                  }
+                                  setFieldValue('hobbie', '', false)
+                                }}
+                              >
+                                Add Hobby
+                              </button>
+                            </div>
+                            <div id='hobbiesHelp' className='form-text'>
+                              You can provide maximum of 5 hobbies.{' '}
+                              <span
+                                className={`${
+                                  values.hobbies.length > 5 && 'text-danger'
+                                }`}
+                              >
+                                {values.hobbies.length} / 5
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </FieldArray>
                     </div>
                   </div>
                   <div className='row mb-3 '>
@@ -312,7 +378,11 @@ const Profile = () => {
             }}
           </Formik>
         ) : (
-          'Loading...'
+          <div className='d-flex justify-content-center'>
+            <div className='spinner-border' role='status'>
+              <span className='sr-only'>Loading...</span>
+            </div>
+          </div>
         )}
       </div>
     </Layout>

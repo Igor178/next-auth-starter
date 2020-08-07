@@ -30,6 +30,12 @@ const UserSchema = new Schema(
         return value.length <= 5 // Limit array to 5
       },
     },
+    plan: {
+      type: String,
+      lowercase: true,
+      enum: ['free', 'plus'],
+      default: 'free',
+    },
     socials: {
       youtube: {
         type: String,
@@ -75,6 +81,14 @@ UserSchema.pre('save', async function (next) {
   }
 
   next()
+})
+
+UserSchema.method('toJSON', function () {
+  const user = this
+  const userObj = user.toObject()
+  delete userObj.password
+
+  return userObj
 })
 
 export default models.User || model('User', UserSchema)
