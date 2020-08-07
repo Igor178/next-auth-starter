@@ -6,6 +6,7 @@ const ShowErrors = ({ errors }) => {
     terms,
     msg,
     bio,
+    hobbies,
     ['socials.instagram']: instagram,
     ['socials.facebook']: facebook,
     ['socials.twitter']: twitter,
@@ -38,6 +39,9 @@ const ShowErrors = ({ errors }) => {
               <Error error={err} key={err} />
             ))}
             {bio?.map((err) => (
+              <Error error={err} key={err} />
+            ))}
+            {hobbies?.map((err) => (
               <Error error={err} key={err} />
             ))}
             {socials.map(({ social, name }) => {

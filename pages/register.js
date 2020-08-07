@@ -54,7 +54,7 @@ const Register = () => {
                 <ShowErrors errors={errors} />
                 <div className='mb-3 '>
                   <label htmlFor='name' className='form-label'>
-                    Name*
+                    Name <span className='text-danger'>*</span>
                   </label>
                   <Field
                     autoComplete='off'
@@ -69,7 +69,7 @@ const Register = () => {
                 </div>
                 <div className='mb-3 '>
                   <label htmlFor='email' className='form-label'>
-                    Email*
+                    Email <span className='text-danger'>*</span>
                   </label>
                   <Field
                     autoComplete='off'
@@ -83,7 +83,7 @@ const Register = () => {
                   />
                 </div>
                 <label htmlFor='password' className='form-label'>
-                  Password*
+                  Password <span className='text-danger'>*</span>
                 </label>
                 <div className=' input-group'>
                   <Field
@@ -107,7 +107,7 @@ const Register = () => {
                 </div>
                 <div className='mb-3 '>
                   <label htmlFor='password_confirm' className='form-label'>
-                    Confirm Password*
+                    Confirm Password <span className='text-danger'>*</span>
                   </label>
                   <Field
                     autoComplete='off'

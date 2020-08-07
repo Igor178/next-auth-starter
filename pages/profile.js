@@ -72,177 +72,241 @@ const Profile = () => {
                 <Form>
                   <ShowSuccess status={status} />
                   <ShowErrors errors={errors} />
-                  <div className='mb-3 '>
-                    <label htmlFor='name' className='form-label'>
+                  <pre>{JSON.stringify(values.hobbies, 2, null)}</pre>
+                  <div className='row mb-3'>
+                    <label htmlFor='name' className='col-sm-2 col-form-label'>
                       Name <span className='text-danger'>*</span>
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='name'
-                      name='name'
-                      placeholder='Your name'
-                      className={`form-control ${
-                        errors?.name && 'border-danger'
-                      }`}
-                    />
+                    <div className='col-sm-10'>
+                      <Field
+                        autoComplete='off'
+                        type='text'
+                        id='name'
+                        name='name'
+                        placeholder='Your name'
+                        className={`form-control ${
+                          errors?.name && 'border-danger'
+                        }`}
+                      />
+                    </div>
                   </div>
-                  <div className='mb-3 '>
-                    {['male', 'other', 'female'].map((option) => {
-                      return (
-                        <div className='form-check' key={option}>
-                          <Field
-                            className='form-check-input'
-                            type='radio'
-                            name='gender'
-                            value={option}
-                            id='flexCheckDefault'
-                          />
-                          <label
-                            className='form-check-label'
-                            htmlFor='flexCheckDefault'
-                          >
-                            {option}
-                          </label>
-                        </div>
-                      )
-                    })}
-                  </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='location' className='form-label'>
+                  <fieldset>
+                    <div className='row mb-3'>
+                      <legend className='col-form-label col-sm-2 pt-0'>
+                        Gender
+                      </legend>
+                      <div className='col-sm-10'>
+                        {['Male', 'Female', 'Other'].map((option) => {
+                          return (
+                            <div className='form-check' key={option}>
+                              <Field
+                                className='form-check-input'
+                                type='radio'
+                                name='gender'
+                                value={option}
+                                id='flexCheckDefault'
+                              />
+                              <label
+                                className='form-check-label'
+                                htmlFor='flexCheckDefault'
+                              >
+                                {option}
+                              </label>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='location'
+                      className='col-sm-2 col-form-label'
+                    >
                       Location
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='location'
-                      name='location'
-                      placeholder='Your current location'
-                      className={`form-control ${
-                        errors?.location && 'border-danger'
-                      }`}
-                    />
+                    <div className='col-sm-10'>
+                      <Field
+                        type='text'
+                        id='location'
+                        name='location'
+                        placeholder='Your current location'
+                        className={`form-control ${
+                          errors?.location && 'border-danger'
+                        }`}
+                      />
+                    </div>
                   </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='bio' className='form-label'>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='hobbies'
+                      className='col-sm-2 col-form-label'
+                    >
+                      Your Hobbies
+                    </label>
+                    <div className='col-sm-10'>
+                      <Field
+                        type='text'
+                        id='hobbies'
+                        name='hobbies'
+                        placeholder='Add some of your hobbies'
+                        className={`form-control ${
+                          errors?.hobbies && 'border-danger'
+                        }`}
+                      />
+                    </div>
+                  </div>
+                  <div className='row mb-3 '>
+                    <label htmlFor='bio' className='col-sm-2 col-form-label'>
                       Your Bio
                     </label>
-                    <Field
-                      rows='5'
-                      component='textarea'
-                      autoComplete='off'
-                      type='text'
-                      id='bio'
-                      name='bio'
-                      placeholder='Tell us something about you 🤗'
-                      className={`form-control ${
-                        errors?.bio && 'border-danger'
-                      }`}
-                    />
-                    <div id='bioHelp' className='form-text mb-3'>
-                      Bio should not be longer then 250 characters.{' '}
-                      <span
-                        className={`${
-                          values.bio.length > 250 && 'text-danger'
+                    <div className='col-sm-10'>
+                      <Field
+                        rows='5'
+                        component='textarea'
+                        autoComplete='off'
+                        type='text'
+                        id='bio'
+                        name='bio'
+                        placeholder='Tell us something about you 🤗'
+                        className={`form-control ${
+                          errors?.bio && 'border-danger'
                         }`}
-                      >
-                        {values.bio.length} / 250
-                      </span>
+                      />
+                      <div id='bioHelp' className='form-text mb-3'>
+                        Bio should not be longer then 250 characters.{' '}
+                        <span
+                          className={`${
+                            values.bio?.length > 250 && 'text-danger'
+                          }`}
+                        >
+                          {values.bio?.length} / 250
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='instagram' className='form-label'>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='instagram'
+                      className='col-sm-2 col-form-label'
+                    >
                       Instagram
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='instagram'
-                      name='socials.instagram'
-                      placeholder='Your Instagram profile'
-                      className={`form-control ${
-                        errors?.['socials.instagram'] && 'border-danger'
-                      }`}
-                    />
-                    <div id='instagramHelp' className='form-text mb-3'>
-                      Please provide link in valid format.
+                    <div className='col-sm-10'>
+                      <Field
+                        autoComplete='off'
+                        type='text'
+                        id='instagram'
+                        name='socials.instagram'
+                        placeholder='Your Instagram profile'
+                        className={`form-control ${
+                          errors?.['socials.instagram'] && 'border-danger'
+                        }`}
+                      />
+                      <div id='instagramHelp' className='form-text mb-3'>
+                        Please provide link in valid format.
+                      </div>
                     </div>
                   </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='youtube' className='form-label'>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='youtube'
+                      className='col-sm-2 col-form-label'
+                    >
                       Youtube
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='youtube'
-                      name='socials.youtube'
-                      placeholder='Your Youtube profile'
-                      className={`form-control ${
-                        errors?.['socials.youtube'] && 'border-danger'
-                      }`}
-                    />
-                    <div id='youtubeHelp' className='form-text mb-3'>
-                      Please provide link in valid format.
+                    <div className='col-sm-10'>
+                      <Field
+                        autoComplete='off'
+                        type='text'
+                        id='youtube'
+                        name='socials.youtube'
+                        placeholder='Your Youtube profile'
+                        className={`form-control ${
+                          errors?.['socials.youtube'] && 'border-danger'
+                        }`}
+                      />
+                      <div id='youtubeHelp' className='form-text mb-3'>
+                        Please provide link in valid format.
+                      </div>
                     </div>
                   </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='facebook' className='form-label'>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='facebook'
+                      className='col-sm-2 col-form-label'
+                    >
                       Facebook
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='facebook'
-                      name='socials.facebook'
-                      placeholder='Your Facebook profile'
-                      className={`form-control ${
-                        errors?.['socials.facebook'] && 'border-danger'
-                      }`}
-                    />
-                    <div id='facebookHelp' className='form-text mb-3'>
-                      Please provide link in valid format.
+                    <div className='col-sm-10'>
+                      <Field
+                        autoComplete='off'
+                        type='text'
+                        id='facebook'
+                        name='socials.facebook'
+                        placeholder='Your Facebook profile'
+                        className={`form-control ${
+                          errors?.['socials.facebook'] && 'border-danger'
+                        }`}
+                      />
+                      <div id='facebookHelp' className='form-text mb-3'>
+                        Please provide link in valid format.
+                      </div>
                     </div>
                   </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='twitter' className='form-label'>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='twitter'
+                      className='col-sm-2 col-form-label'
+                    >
                       Twitter
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='twitter'
-                      name='socials.twitter'
-                      placeholder='Your Twitter profile'
-                      className={`form-control ${
-                        errors?.['socials.twitter'] && 'border-danger'
-                      }`}
-                    />
-                    <div id='twitterHelp' className='form-text mb-3'>
-                      Please provide link in valid format.
+                    <div className='col-sm-10'>
+                      <Field
+                        autoComplete='off'
+                        type='text'
+                        id='twitter'
+                        name='socials.twitter'
+                        placeholder='Your Twitter profile'
+                        className={`form-control ${
+                          errors?.['socials.twitter'] && 'border-danger'
+                        }`}
+                      />
+                      <div id='twitterHelp' className='form-text mb-3'>
+                        Please provide link in valid format.
+                      </div>
                     </div>
                   </div>
-                  <div className='mb-3 '>
-                    <label htmlFor='website' className='form-label'>
+                  <div className='row mb-3'>
+                    <label
+                      htmlFor='website'
+                      className='col-sm-2 col-form-label'
+                    >
                       Website
                     </label>
-                    <Field
-                      autoComplete='off'
-                      type='text'
-                      id='website'
-                      name='socials.website'
-                      placeholder='Your Website'
-                      className={`form-control ${
-                        errors?.['socials.website'] && 'border-danger'
-                      }`}
-                    />
-                    <div id='websiteHelp' className='form-text mb-3'>
-                      Please provide link in valid format.
+                    <div className='col-sm-10'>
+                      <Field
+                        autoComplete='off'
+                        type='text'
+                        id='website'
+                        name='socials.website'
+                        placeholder='Your Website'
+                        className={`form-control ${
+                          errors?.['socials.website'] && 'border-danger'
+                        }`}
+                      />
+                      <div id='websiteHelp' className='form-text mb-3'>
+                        Please provide link in valid format.
+                      </div>
                     </div>
                   </div>
-                  <button className='btn btn-primary' type='submit'>
-                    Save Profile
-                  </button>
+                  <div className='row'>
+                    <div className='col-sm-10 offset-sm-2'>
+                      <button className='btn btn-primary' type='submit'>
+                        Save Profile
+                      </button>
+                    </div>
+                  </div>
                 </Form>
               )
             }}

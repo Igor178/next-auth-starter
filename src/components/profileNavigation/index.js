@@ -5,7 +5,7 @@ const ProfileNavigation = () => {
   const { route } = useRouter()
 
   return (
-    <nav className='nav nav-pills'>
+    <nav className='nav nav-pills pt-3 pb-3'>
       <Link href='/profile'>
         <a className={`nav-link ${route === '/profile' && 'active'}`}>
           Edit Profile

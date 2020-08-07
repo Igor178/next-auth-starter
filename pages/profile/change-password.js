@@ -59,66 +59,87 @@ const ChangePassword = () => {
               <Form>
                 <ShowErrors errors={errors} />
                 <ShowSuccess status={status} />
-                <div className='mb-3 '>
-                  <label htmlFor='current password' className='form-label'>
+                <div className='row mb-3'>
+                  <label
+                    htmlFor='current password'
+                    className='col-sm-2 col-form-label'
+                  >
                     Current Password <span className='text-danger'>*</span>
                   </label>
-                  <Field
-                    autoComplete='off'
-                    type='password'
-                    id='current_password'
-                    name='current_password'
-                    placeholder='Your current password'
-                    className={`form-control ${
-                      (errors?.password && 'border-danger') ||
-                      (errors?.msg && 'border-danger')
-                    }`}
-                  />
-                </div>
-                <label htmlFor='password' className='form-label'>
-                  New Password <span className='text-danger'>*</span>
-                </label>
-                <div className='input-group'>
-                  <Field
-                    autoComplete='off'
-                    type={passwordToggle ? undefined : 'password'}
-                    id='password'
-                    name='password'
-                    placeholder='Your new password'
-                    className={`form-control ${
-                      errors?.password && 'border-danger'
-                    }`}
-                  />
-                  <ShowPassword
-                    passwordToggle={passwordToggle}
-                    togglePassword={togglePassword}
-                  />
-                </div>
-                <div id='passwordHelp' className='form-text mb-3'>
-                  Your new password must contain at least one uppercase letter,
-                  one lowercase letter and one number.
-                </div>
-                <div className='mb-3 '>
-                  <label htmlFor='password_confirm' className='form-label'>
-                    Confirm Password <span className='text-danger'>*</span>
-                  </label>
-                  <Field
-                    autoComplete='off'
-                    type='password'
-                    id='password_confirmation'
-                    name='password_confirmation'
-                    placeholder='Confirm your password'
-                    className={`form-control ${
-                      errors?.password && 'border-danger'
-                    }`}
-                  />
-                  <div id='passwordConfirmHelp' className='form-text mb-3'>
-                    Both passwords must match.
+                  <div className='col-sm-10'>
+                    <Field
+                      autoComplete='off'
+                      type='password'
+                      id='current_password'
+                      name='current_password'
+                      placeholder='Your current password'
+                      className={`form-control ${
+                        (errors?.password && 'border-danger') ||
+                        (errors?.msg && 'border-danger')
+                      }`}
+                    />
                   </div>
                 </div>
-                <button className='btn btn-primary' type='submit'>
-                  Save Password
-                </button>
+                <div className='row'>
+                  <label htmlFor='password' className='col-sm-2 col-form-label'>
+                    New Password <span className='text-danger'>*</span>
+                  </label>
+                  <div className='col-sm-10'>
+                    <div className='input-group'>
+                      <Field
+                        autoComplete='off'
+                        type={passwordToggle ? undefined : 'password'}
+                        id='password'
+                        name='password'
+                        placeholder='Your new password'
+                        className={`form-control ${
+                          errors?.password && 'border-danger'
+                        }`}
+                      />
+                      <ShowPassword
+                        passwordToggle={passwordToggle}
+                        togglePassword={togglePassword}
+                      />
+                      <div
+                        id='passwordHelp'
+                        className='form-text mb-3 col-sm-12'
+                      >
+                        Your new password must contain at least one uppercase
+                        letter, one lowercase letter and one number.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='row mb-3'>
+                  <label
+                    htmlFor='password_confirm'
+                    className='col-sm-2 col-form-label'
+                  >
+                    Confirm Password <span className='text-danger'>*</span>
+                  </label>
+                  <div className='col-sm-10'>
+                    <Field
+                      autoComplete='off'
+                      type='password'
+                      id='password_confirmation'
+                      name='password_confirmation'
+                      placeholder='Confirm your password'
+                      className={`form-control ${
+                        errors?.password && 'border-danger'
+                      }`}
+                    />
+                    <div id='passwordConfirmHelp' className='form-text mb-3'>
+                      Both passwords must match.
+                    </div>
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-sm-10 offset-sm-2'>
+                    <button className='btn btn-primary' type='submit'>
+                      Save Password
+                    </button>
+                  </div>
+                </div>
               </Form>
             )
           }}
