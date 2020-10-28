@@ -96,7 +96,7 @@ const Profile = () => {
                         Gender
                       </legend>
                       <div className='col-sm-10'>
-                        {['Male', 'Female', 'Other'].map((option) => {
+                        {['male', 'female', 'other'].map((option) => {
                           return (
                             <div className='form-check' key={option}>
                               <Field
@@ -110,7 +110,7 @@ const Profile = () => {
                                 className='form-check-label'
                                 htmlFor='flexCheckDefault'
                               >
-                                {option}
+                                {option[0].toUpperCase() + option.slice(1)}
                               </label>
                             </div>
                           )

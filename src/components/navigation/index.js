@@ -59,6 +59,11 @@ const Navigation = () => {
                 </a>
               </Link>
             )}
+            <Link href='/terms'>
+              <a className={`nav-link ${route === '/terms' && 'active'}`}>
+                Terms
+              </a>
+            </Link>
             {!isAuthenticated && (
               <Link href='/login'>
                 <a className={`nav-link ${route === '/login' && 'active'}`}>
