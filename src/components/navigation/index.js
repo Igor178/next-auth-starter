@@ -12,7 +12,7 @@ const Navigation = () => {
 
   const logout = async () => {
     try {
-      const response = await get('/api/logout')
+      const response = await get(`/api/logout`)
       mutate('/api/profile', true) // Revalidate data when logging out
       setAuthenticated(false)
     } catch (err) {
@@ -24,8 +24,9 @@ const Navigation = () => {
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       <div className='container'>
         <Link href={!isAuthenticated ? '/' : '/dashboard'}>
-          <a className='navbar-brand'>NextJS 9.5 💯</a>
+          <a className='navbar-brand'>NextJS 10.0 💯</a>
         </Link>
+
         <button
           className='navbar-toggler'
           type='button'
